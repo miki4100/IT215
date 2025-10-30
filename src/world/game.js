@@ -7,6 +7,8 @@ const STORAGE_KEYS = {
   bestCoins: 'px2d_best_coins',
 };
 
+const BACKGROUND_DISTANCE_FACTORS = [0, 5, 11.25];
+
 export class Game {
   constructor(canvas, context, hud) {
     this.canvas = canvas;
@@ -24,7 +26,7 @@ export class Game {
         this.loadImage('./B3.png'),
       ],
     };
-    this.backgroundStops = [0, 4000, 9000];
+    this.backgroundStops = this.createBackgroundStops(this.canvas.width);
 
     this.playerConfig = {
       gravity: 1600,
@@ -38,20 +40,9 @@ export class Game {
       jumpBufferTime: 0.15,
     };
 
-    this.generator = new WorldGenerator({
-      startHeight: this.canvas.height - 160,
-      platformHeight: 12,
-      minGap: 80,
-      maxGap: 160,
-      minWidth: 120,
-      maxWidth: 240,
-      minHeight: 120,
-      maxHeight: this.canvas.height - 140,
-      maxRise: 80,
-      maxDrop: 110,
-      coinChance: 0.55,
-      spawnBuffer: this.canvas.width * 2.5,
-    });
+    this.generator = new WorldGenerator(
+      this.createGeneratorConfig(this.canvas.width, this.canvas.height),
+    );
 
     this.spikeHeight = 48;
     this.spikeY = this.canvas.height - this.spikeHeight + 12;
@@ -87,6 +78,84 @@ export class Game {
     };
 
     this.updateHud();
+  }
+
+  createGeneratorConfig(width, height) {
+    return {
+      startHeight: height - 160,
+      platformHeight: 12,
+      minGap: 80,
+      maxGap: 160,
+      minWidth: 120,
+      maxWidth: 240,
+      minHeight: 120,
+      maxHeight: height - 140,
+      maxRise: 80,
+      maxDrop: 110,
+      coinChance: 0.55,
+      spawnBuffer: width * 2.5,
+    };
+  }
+
+  createBackgroundStops(width) {
+    return BACKGROUND_DISTANCE_FACTORS.map((factor) =>
+      Math.round(factor * width),
+    );
+  }
+
+  resize(width, height) {
+    const targetWidth = Math.max(1, Math.floor(width));
+    const targetHeight = Math.max(1, Math.floor(height));
+    const widthChanged = targetWidth !== this.canvas.width;
+    const heightChanged = targetHeight !== this.canvas.height;
+
+    if (!widthChanged && !heightChanged) {
+      return;
+    }
+
+    this.canvas.width = targetWidth;
+    this.canvas.height = targetHeight;
+    this.context.imageSmoothingEnabled = false;
+
+    Object.assign(
+      this.generator.config,
+      this.createGeneratorConfig(targetWidth, targetHeight),
+    );
+
+    this.backgroundStops = this.createBackgroundStops(targetWidth);
+    this.spikeY = this.canvas.height - this.spikeHeight + 12;
+
+    const maxPlatformY = this.generator.config.maxHeight;
+    const coinMaxY = Math.max(maxPlatformY - 24, 12);
+
+    if (Array.isArray(this.platforms)) {
+      if (this.platforms.length > 0) {
+        this.platforms[0].y = this.generator.config.startHeight;
+      }
+      for (const platform of this.platforms) {
+        if (platform.y > maxPlatformY) {
+          platform.y = maxPlatformY;
+        }
+      }
+    }
+
+    if (Array.isArray(this.coins)) {
+      for (const coin of this.coins) {
+        if (coin.y > coinMaxY) {
+          coin.y = coinMaxY;
+        }
+      }
+    }
+
+    if (this.player) {
+      const maxPlayerY = this.spikeY - this.player.height;
+      if (this.player.position.y > maxPlayerY) {
+        this.player.position.y = maxPlayerY;
+      }
+      if (this.player.previousPosition.y > maxPlayerY) {
+        this.player.previousPosition.y = maxPlayerY;
+      }
+    }
   }
 
   start() {
