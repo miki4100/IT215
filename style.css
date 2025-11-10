@@ -1,42 +1,40 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
-  background: #0f0f1e;
-  color: #f1f1f1;
-  font-family: "Press Start 2P", system-ui, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   overflow: hidden;
+  background-color: #0a0a14;
+  font-family: 'Arial', sans-serif;
+  color: white;
 }
 
-.hud {
+/* Center container */
+#menu {
   position: absolute;
-  top: 16px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 24px;
-  font-size: 14px;
-  text-shadow: 0 0 4px #000;
-  z-index: 10;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
-.hud__item {
-  background: rgba(0, 0, 0, 0.35);
-  padding: 8px 12px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+/* Play button styling */
+button.play-button {
+  background: linear-gradient(180deg, #eee, #ccc);
+  border: 2px solid #222;
   border-radius: 6px;
+  font-size: 20px;
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: black;
 }
 
-#gameCanvas {
-  image-rendering: pixelated;
-  background: linear-gradient(#1e264b, #0f142d 65%, #05060f);
-  border: 4px solid #222b50;
+button.play-button:hover {
+  background: linear-gradient(180deg, #fff, #ddd);
+  transform: scale(1.05);
+}
+
+/* Optional: shadow for depth */
+#menu {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  padding: 20px;
 }
