@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform — Select Character</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="characters">
+  <div class="characters__background" aria-hidden="true"></div>
+  <main class="characters__layout">
+    <section class="characters__panel">
+      <header class="characters__heading">
+        <span class="characters__title">Choose Your Runner</span>
+        <p class="characters__subtitle">
+          Select which hero will dash through the platforms.
+        </p>
+      </header>
+      <div
+        class="characters__preview"
+        id="characterPreview"
+        role="img"
+        aria-live="polite"
+        aria-label="Player 1 preview"
+      >
+        <img
+          src="./PLAYER.png"
+          alt="Selected character preview"
+          id="characterPreviewImage"
+          class="characters__preview-image"
+        />
+      </div>
+      <div class="characters__options" role="list">
+        <button
+          type="button"
+          class="characters__option"
+          data-character="player1"
+          role="listitem"
+        >
+          <span
+            class="characters__option-art"
+            aria-hidden="true"
+            style='background-image: url("./PLAYER.png");'
+          ></span>
+          <span class="characters__option-label">Player 1</span>
+        </button>
+        <button
+          type="button"
+          class="characters__option"
+          data-character="player2"
+          role="listitem"
+        >
+          <span
+            class="characters__option-art"
+            aria-hidden="true"
+            style='background-image: url("./PLAYER2.png");'
+          ></span>
+          <span class="characters__option-label">Player 2</span>
+        </button>
+      </div>
+      <div class="characters__actions">
+        <button type="button" class="characters__action-button" id="charactersBack">
+          Back to Menu
+        </button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./characters.js"></script>
+</body>
+</html>

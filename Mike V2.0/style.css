@@ -1,0 +1,552 @@
+@font-face {
+  font-family: "YouMurdererBB";
+  src: url("./youmurdererbb_reg.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0f0f1e;
+  color: #f1f1f1;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+body.game {
+  background: #0f0f1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+body.home {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(32px, 6vw, 96px);
+  overflow: hidden;
+  color: #fce5e5;
+  background: #030104;
+}
+
+.home__background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url("./homepage.jpg") center center / cover no-repeat;
+}
+
+.home__background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 0, 2, 0.78) 0%, rgba(8, 0, 2, 0.56) 32%, transparent 70%);
+  pointer-events: none;
+}
+
+.home__layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(520px, 100%);
+  justify-content: flex-start;
+}
+
+.home__panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+  width: 100%;
+  align-items: flex-start;
+}
+
+.home__heading {
+  position: relative;
+  text-align: left;
+}
+
+.home__title,
+.home__title-glow {
+  display: block;
+  font-family: "YouMurdererBB", "Old English Text MT", serif;
+  font-size: clamp(48px, 8vw, 108px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.home__title {
+  position: relative;
+  z-index: 1;
+  color: #f91f32;
+  text-shadow: 0 0 12px rgba(249, 31, 50, 0.45), 0 0 32px rgba(0, 0, 0, 0.8);
+}
+
+.home__title-glow {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  transform: translateY(12px) scale(1.12);
+  pointer-events: none;
+  filter: blur(16px);
+  opacity: 0.5;
+  text-shadow: 0 0 40px rgba(92, 0, 10, 0.85), 0 0 80px rgba(255, 30, 50, 0.35);
+}
+
+.home__menu {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 3vw, 26px);
+  width: 100%;
+  align-items: flex-start;
+}
+
+.home__menu-button {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #f52b3c;
+  font-family: "YouMurdererBB", "Old English Text MT", serif;
+  font-size: clamp(18px, 3vw, 28px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+.home__menu-button:hover,
+.home__menu-button:focus-visible {
+  color: #ff4f5d;
+  transform: translateX(12px);
+  text-shadow: 0 0 18px rgba(255, 79, 93, 0.7);
+}
+
+.home__menu-button:focus {
+  outline: none;
+}
+
+.home__menu-button:active {
+  transform: translateX(6px);
+}
+
+@media (max-width: 720px) {
+  body.home {
+    padding: clamp(24px, 6vw, 64px);
+  }
+
+  .home__menu-button {
+    letter-spacing: 0.12em;
+  }
+}
+
+body.maps {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(32px, 6vw, 96px);
+  color: #fce5e5;
+  background: #08000d;
+}
+
+body.characters {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #fce5e5;
+  background: #06000d;
+  overflow: hidden;
+}
+
+.maps__background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 70, 94, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 35%, rgba(255, 121, 64, 0.18), transparent 60%),
+    #050008;
+}
+
+.maps__layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(960px, 100%);
+  justify-content: center;
+}
+
+.maps__panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: clamp(24px, 3vw, 32px);
+  background: rgba(12, 0, 3, 0.72);
+  border: 2px solid rgba(255, 60, 88, 0.32);
+  border-radius: 18px;
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.maps__heading {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 18px);
+}
+
+.maps__title {
+  font-family: "YouMurdererBB", "Old English Text MT", serif;
+  font-size: clamp(42px, 5vw, 72px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ff2043;
+  text-shadow: 0 0 28px rgba(255, 32, 67, 0.52);
+}
+
+.maps__subtitle {
+  margin: 0;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  font-size: clamp(11px, 1.4vw, 14px);
+  line-height: 1.6;
+  color: rgba(255, 220, 220, 0.72);
+}
+
+.maps__preview {
+  position: relative;
+  width: min(100%, 720px);
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 60, 88, 0.4);
+  background: url("./homepage.jpg") center center / cover no-repeat;
+  box-shadow: inset 0 0 80px rgba(4, 0, 2, 0.68);
+  transition: background-image 0.3s ease-in-out;
+}
+
+.maps__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.maps__option {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid rgba(255, 80, 96, 0.38);
+  border-radius: 14px;
+  background: rgba(12, 0, 5, 0.7);
+  color: #ffd6da;
+  font-family: "YouMurdererBB", "Old English Text MT", serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.maps__option:hover,
+.maps__option:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(255, 130, 150, 0.9);
+  box-shadow: 0 14px 32px rgba(255, 66, 104, 0.35);
+  outline: none;
+}
+
+.maps__option.is-active {
+  border-color: rgba(255, 188, 200, 0.95);
+  box-shadow: 0 16px 36px rgba(255, 188, 200, 0.38);
+}
+
+.maps__option-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background: #2b0b12;
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 -24px 36px rgba(0, 0, 0, 0.55);
+}
+
+.maps__option-label {
+  display: block;
+  text-align: center;
+}
+
+.maps__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.maps__action-button {
+  padding: 14px 28px;
+  border: 2px solid rgba(255, 70, 98, 0.5);
+  border-radius: 28px;
+  background: rgba(10, 0, 4, 0.7);
+  color: #ffdce0;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  font-size: clamp(12px, 1.5vw, 14px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.maps__action-button:hover,
+.maps__action-button:focus-visible {
+  border-color: rgba(255, 120, 140, 0.9);
+  box-shadow: 0 12px 28px rgba(255, 90, 120, 0.35);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.maps__action-button:active {
+  transform: translateY(0);
+}
+
+.maps__option:focus {
+  outline: none;
+}
+
+.maps__option:active {
+  transform: translateY(-2px);
+}
+
+.characters__background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 70, 94, 0.16), transparent 60%),
+    radial-gradient(circle at 78% 65%, rgba(114, 38, 255, 0.2), transparent 62%),
+    #050008;
+}
+
+.characters__background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(10, 0, 28, 0.85) 0%, rgba(91, 9, 19, 0.62) 48%, rgba(3, 0, 12, 0.9) 100%);
+  pointer-events: none;
+}
+
+.characters__layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(32px, 6vw, 96px);
+}
+
+.characters__layout::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.06), transparent 60%);
+  z-index: -1;
+}
+
+.characters__layout::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, rgba(6, 0, 18, 0.85), transparent 65%);
+}
+
+.characters__panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 32px);
+  width: min(900px, 100%);
+  background: rgba(10, 0, 24, 0.72);
+  border: 2px solid rgba(255, 60, 88, 0.32);
+  border-radius: 18px;
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  color: #ffd4e0;
+}
+
+.characters__heading {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 18px);
+}
+
+.characters__title {
+  font-family: "YouMurdererBB", "Old English Text MT", serif;
+  font-size: clamp(42px, 5vw, 72px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ff2043;
+  text-shadow: 0 0 28px rgba(255, 32, 67, 0.52);
+}
+
+.characters__subtitle {
+  margin: 0;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  font-size: clamp(11px, 1.4vw, 14px);
+  line-height: 1.6;
+  color: rgba(255, 220, 220, 0.72);
+}
+
+.characters__preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 80, 96, 0.38);
+  background: rgba(14, 0, 24, 0.65);
+  box-shadow: inset 0 0 64px rgba(4, 0, 12, 0.8);
+  overflow: hidden;
+}
+
+.characters__preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.characters__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.characters__option {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid rgba(255, 80, 96, 0.38);
+  border-radius: 14px;
+  background: rgba(12, 0, 5, 0.7);
+  color: #ffd6da;
+  font-family: "YouMurdererBB", "Old English Text MT", serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.characters__option:hover,
+.characters__option:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(255, 130, 150, 0.9);
+  box-shadow: 0 14px 32px rgba(255, 66, 104, 0.35);
+  outline: none;
+}
+
+.characters__option:focus {
+  outline: none;
+}
+
+.characters__option:active {
+  transform: translateY(-2px);
+}
+
+.characters__option.is-active {
+  border-color: rgba(255, 188, 200, 0.95);
+  box-shadow: 0 16px 36px rgba(255, 188, 200, 0.38);
+}
+
+.characters__option-art {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(25, 0, 28, 0.9);
+  box-shadow: inset 0 -24px 36px rgba(0, 0, 0, 0.55);
+}
+
+.characters__option-label {
+  display: block;
+  text-align: center;
+}
+
+.characters__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.characters__action-button {
+  padding: 14px 28px;
+  border: 2px solid rgba(255, 70, 98, 0.5);
+  border-radius: 28px;
+  background: rgba(10, 0, 4, 0.7);
+  color: #ffdce0;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  font-size: clamp(12px, 1.5vw, 14px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.characters__action-button:hover,
+.characters__action-button:focus-visible {
+  border-color: rgba(255, 120, 140, 0.9);
+  box-shadow: 0 12px 28px rgba(255, 90, 120, 0.35);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.characters__action-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .maps__panel {
+    padding: clamp(20px, 6vw, 28px);
+  }
+
+  .maps__options {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .characters__layout {
+    padding: clamp(24px, 6vw, 64px);
+  }
+
+  .characters__panel {
+    padding: clamp(24px, 7vw, 36px);
+  }
+
+  .characters__options {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+#gameCanvas {
+  image-rendering: pixelated;
+  background: linear-gradient(#1e264b, #0f142d 65%, #05060f);
+  border: 4px solid #222b50;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}

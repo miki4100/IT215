@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform — Select Map</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="maps">
+  <div class="maps__background" aria-hidden="true"></div>
+  <main class="maps__layout">
+    <section class="maps__panel">
+      <header class="maps__heading">
+        <span class="maps__title">Choose Your Map</span>
+        <p class="maps__subtitle">
+          Pick a season or cityscape to change the game's background.
+        </p>
+      </header>
+      <div
+        class="maps__preview"
+        id="mapPreview"
+        role="img"
+        aria-live="polite"
+        aria-label="Map preview"
+      ></div>
+      <div class="maps__options" role="list">
+        <button
+          type="button"
+          class="maps__option"
+          data-map="fall"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Fall</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="winter"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Winter</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="summer"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Summer</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="city"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">City</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="city2"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">City 2</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="crystal"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Crystal</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="forest"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Forest</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="night"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Night</span>
+        </button>
+        <button
+          type="button"
+          class="maps__option"
+          data-map="temple"
+          role="listitem"
+        >
+          <span class="maps__option-thumb" aria-hidden="true"></span>
+          <span class="maps__option-label">Temple</span>
+        </button>
+      </div>
+      <div class="maps__actions">
+        <button type="button" class="maps__action-button" id="mapsBack">
+          Back to Menu
+        </button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./maps.js"></script>
+</body>
+</html>
